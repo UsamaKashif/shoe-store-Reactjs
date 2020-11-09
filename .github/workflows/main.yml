@@ -22,7 +22,7 @@ jobs:
         run: CI=false npm run build
       - name: CD build
         with:
-          cmd: cd ./build 
+          run: cd ./build 
                mv index.html 200.html
       - name: Install Surge
         run: npm install -g surge
