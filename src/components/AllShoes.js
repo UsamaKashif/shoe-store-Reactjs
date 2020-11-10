@@ -12,13 +12,24 @@ import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         marginTop: "77px",
+        overflow: "hidden"
     },
     card: {
         height: "758px",
         width: "491px",
+        background: "#9B4343",
+        borderRadius: "15px"
+    },
+    cardRes: {
+        height: "700px",
+        width: "400px",
         background: "#9B4343",
         borderRadius: "15px"
     },
@@ -29,6 +40,13 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         margin: "16px auto"
     },
+    cardMediaRes: {
+        width: "420px",
+        height: "477px",
+        display: "flex",
+        justifyContent: "center",
+        margin: "0 auto"
+    },
     cardTitle: {
         fontFamily: "Poppins",
         fontStyle: "normal",
@@ -37,11 +55,28 @@ const useStyles = makeStyles((theme) => ({
         color: "#FFFFFF",
         marginTop: '17px;'
     },
+    cardTitleRes: {
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: "bold",
+        fontSize: "20px",
+        color: "#FFFFFF",
+        marginTop: '5px',
+    },
     price: {
         fontFamily: "Poppins",
         fontStyle: "normal",
         fontWeight: "bold",
         fontSize: "64px",
+        lineHeight: "96px",
+        color: "#F3EBE8",
+        marginTop: "4px"
+    },
+    priceRes: {
+        fontFamily: "Poppins",
+        fontStyle: "normal",
+        fontWeight: "bold",
+        fontSize: "45px",
         lineHeight: "96px",
         color: "#F3EBE8",
         marginTop: "4px"
@@ -78,25 +113,28 @@ const AllShoes = () => {
     const shoesData = Object.entries(shoes)
 
     const classes = useStyles();
+
+    const matches = useMediaQuery('(max-width:535px)');
+
     return (
-        <Grid container className={classes.root} spacing={1}>
-            <Grid item xs={12}>
-                <Grid container justify="center" spacing={8}>
+        <Grid  className={classes.root} spacing={0}>
+            <Grid item xl={12} className={classes.width}>
+                <Grid container justify="center" spacing={7}>
                     {shoesData.map((value, i) => {
                         const url = `/product/${value[0]}`
                         return (<Grid key={i} item>
-                            <Card className={classes.card}>
+                            <Card className={matches ? classes.cardRes : classes.card}>
                                 <CardMedia 
-                                    className={classes.cardMedia}
+                                    className={matches ? classes.cardMediaRes : classes.cardMedia}
                                     image={value[1].img}
                                     title={value[1].name}
                                 />
                                 <CardContent >
-                                    <Typography variant="h5" className={classes.cardTitle}>
+                                    <Typography variant="h5" className={matches ? classes.cardTitleRes :classes.cardTitle}>
                                         {value[1].name}
                                     </Typography>
                                     <div className={classes.cardFooter}> 
-                                        <Typography variant="h5" className={classes.price}>
+                                        <Typography variant="h5" className={matches ? classes.priceRes : classes.price}>
                                             {value[1].price}
                                         </Typography>
                                         <Link to={url} className={classes.link}>

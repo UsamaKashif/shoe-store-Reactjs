@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding: 0
+}
+
+.shoeContainer {
+    max-width: 1634px;
+    height: 771px;
+    margin: 105px auto;
+    display: flex;
+    flex-direction: row !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.productDetail {
+    width: 50%;
+    
+}
