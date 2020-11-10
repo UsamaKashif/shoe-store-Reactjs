@@ -20,6 +20,10 @@ jobs:
         run: sudo apt update && sudo apt install yarn
       - name: Build React App
         run: CI=false npm run build
+      - name: CD build
+        run: | 
+              cd ./build
+              mv index.html 200.html
       - name: Install Surge
         run: npm install -g surge
       - name: Run surge
